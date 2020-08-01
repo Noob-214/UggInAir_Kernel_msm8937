@@ -40,11 +40,9 @@
 #define PCI_DEVICE_ID_INTEL_CHERRYVIEW_XHCI		0x22b5
 #define PCI_DEVICE_ID_INTEL_SUNRISEPOINT_H_XHCI		0xa12f
 #define PCI_DEVICE_ID_INTEL_SUNRISEPOINT_LP_XHCI	0x9d2f
-<<<<<<< HEAD
-=======
 #define PCI_DEVICE_ID_INTEL_BROXTON_M_XHCI		0x0aa8
 #define PCI_DEVICE_ID_INTEL_BROXTON_B_XHCI		0x1aa8
->>>>>>> e04b898d9450e695141c1d06b59009973701c184
+
 
 static const char hcd_name[] = "xhci_hcd";
 
@@ -134,8 +132,8 @@ static void xhci_pci_quirks(struct device *dev, struct xhci_hcd *xhci)
 		 * DMI information to find those particular boards (since each
 		 * vendor will change the board name), so we have to key off all
 		 * PPT chipsets.
-		 */
-		xhci->quirks |= XHCI_SPURIOUS_REBOOT;
+		 */	
+                  xhci->quirks |= XHCI_SPURIOUS_REBOOT;
 	}
 	if (pdev->vendor == PCI_VENDOR_ID_INTEL &&
 		pdev->device == PCI_DEVICE_ID_INTEL_LYNXPOINT_LP_XHCI) {
@@ -144,13 +142,7 @@ static void xhci_pci_quirks(struct device *dev, struct xhci_hcd *xhci)
 	if (pdev->vendor == PCI_VENDOR_ID_INTEL &&
 		(pdev->device == PCI_DEVICE_ID_INTEL_SUNRISEPOINT_LP_XHCI ||
 		 pdev->device == PCI_DEVICE_ID_INTEL_SUNRISEPOINT_H_XHCI ||
-<<<<<<< HEAD
 		 pdev->device == PCI_DEVICE_ID_INTEL_CHERRYVIEW_XHCI)) {
-=======
-		 pdev->device == PCI_DEVICE_ID_INTEL_CHERRYVIEW_XHCI ||
-		 pdev->device == PCI_DEVICE_ID_INTEL_BROXTON_M_XHCI ||
-		 pdev->device == PCI_DEVICE_ID_INTEL_BROXTON_B_XHCI)) {
->>>>>>> e04b898d9450e695141c1d06b59009973701c184
 		xhci->quirks |= XHCI_PME_STUCK_QUIRK;
 	}
 	if (pdev->vendor == PCI_VENDOR_ID_ETRON &&
@@ -164,7 +156,6 @@ static void xhci_pci_quirks(struct device *dev, struct xhci_hcd *xhci)
 		xhci->quirks |= XHCI_RESET_ON_RESUME;
 	if (pdev->vendor == PCI_VENDOR_ID_VIA)
 		xhci->quirks |= XHCI_RESET_ON_RESUME;
-
 	/* See https://bugzilla.kernel.org/show_bug.cgi?id=79511 */
 	if (pdev->vendor == PCI_VENDOR_ID_VIA &&
 			pdev->device == 0x3432)
